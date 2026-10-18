@@ -1,17 +1,63 @@
-# React + Vite
+# Nordlys Renhold
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fictional cleaning-company website concept built with React and Vite.
 
-Currently, two official plugins are available:
+## About the project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Nordlys Renhold is a **fictional** cleaning-company website concept. I built it to demonstrate my frontend development skills. It is **not a real business**, and nothing on the site represents real services, offers or contact details.
 
-## React Compiler
+The site content is written in Norwegian Bokmål.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- Responsive layout for mobile, tablet and desktop
+- Services, benefits, process, pricing information and FAQ sections
+- Accessible navigation and semantic HTML
+- Contact form with required-field and email validation
+- Contact form creates an email handoff (a `mailto:` link) only when a real recipient address is configured. It does not send messages to a server.
+- Custom SVG favicon
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# nordlys-renhold
+## Tech stack
+
+- React
+- JavaScript
+- Vite
+- CSS
+
+## Getting started
+
+Requires [Node.js](https://nodejs.org/) and npm.
+
+```bash
+npm install
+npm run dev
+```
+
+Vite prints the local URL in the terminal. It is usually `http://localhost:5173`.
+
+## Production build
+
+```bash
+npm run build
+```
+
+The build output is written to `dist/`. To preview it locally, run `npm run preview`.
+
+## Accessibility
+
+Implemented features:
+
+- Semantic landmarks (`header`, `nav`, `main`, `footer`) and section headings
+- Labelled primary and footer navigation
+- Skip link to the main content
+- Visible keyboard focus styles
+- Form fields with associated labels, marked as required
+- Native form validation, with a status message announced through a live region
+- FAQ built with native `details`/`summary` elements
+- Reduced-motion preferences respected
+
+A formal accessibility audit has not been completed.
+
+## Project status
+
+This is a portfolio concept project. Before real email handoff can work, set the contact form recipient by replacing the `CONTACT_EMAIL` placeholder in [`src/App.jsx`](src/App.jsx) with a real address. Until then, the form shows a message that no recipient is configured.
