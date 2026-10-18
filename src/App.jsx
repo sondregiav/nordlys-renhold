@@ -1,5 +1,8 @@
 import './App.css'
 
+// Replace this placeholder with a real recipient address before accepting inquiries.
+const CONTACT_EMAIL = 'REPLACE_WITH_REAL_CONTACT_EMAIL'
+
 const services = [
   {
     title: 'Hjemmerenhold',
@@ -61,6 +64,44 @@ const faqItems = [
 
 function App() {
   const currentYear = new Date().getFullYear()
+
+  function handleContactSubmit(event) {
+    event.preventDefault()
+
+    const form = event.currentTarget
+    if (!form.checkValidity()) {
+      form.reportValidity()
+      return
+    }
+
+    if (CONTACT_EMAIL === 'REPLACE_WITH_REAL_CONTACT_EMAIL') {
+      form.querySelector('[role="status"]').textContent =
+        'E-postmottaker er ikke konfigurert ennå. Skjemaet trenger en reell mottakeradresse før e-post kan klargjøres.'
+      return
+    }
+
+    const formData = new FormData(form)
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const service = form.querySelector('#contact-service').selectedOptions[0].text
+    const message = formData.get('message')
+
+    const subject = `Forespørsel om renhold fra ${name}`
+    const body = [
+      `Navn: ${name}`,
+      `E-post: ${email}`,
+      `Type renhold: ${service}`,
+      '',
+      'Melding:',
+      message,
+    ].join('\n')
+
+    const mailtoUrl =
+      `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}` +
+      `&body=${encodeURIComponent(body)}`
+
+    window.location.href = mailtoUrl
+  }
 
   return (
     <>
@@ -217,7 +258,11 @@ function App() {
             </p>
           </div>
 
-          <form className="contact-form">
+          <form
+            className="contact-form"
+            noValidate
+            onSubmit={handleContactSubmit}
+          >
             <div className="form-field">
               <label htmlFor="contact-name">Navn</label>
               <input
@@ -261,12 +306,14 @@ function App() {
               />
             </div>
 
-            <button className="button button-primary" type="button">
+            <button className="button button-primary" type="submit">
               Klargjør forespørsel
             </button>
             <p className="form-note">
-              Dette er et konseptskjema og sender foreløpig ikke meldinger.
+              Skjemaet klargjør en e-post i e-postprogrammet ditt, men sender
+              den ikke automatisk.
             </p>
+            <p className="form-note" role="status" aria-live="polite" />
           </form>
         </section>
       </main>
