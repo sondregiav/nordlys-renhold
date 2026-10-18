@@ -43,6 +43,10 @@ npm run build
 
 The build output is written to `dist/`. To preview it locally, run `npm run preview`.
 
+## Deployment
+
+Pushing to `main` automatically builds and deploys the site to [GitHub Pages](https://sondregiav.github.io/nordlys-renhold/). The workflow can also be started manually from the repository's Actions tab.
+
 ## Accessibility
 
 Implemented features:
